@@ -3,7 +3,19 @@ import 'pages/login_page.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 void main() {
-  runApp(const MyApp());
+  final HttpLink httpLink = HttpLink('http://localhost:8000/graphql',);
+
+  ValueNotifier<GraphQLClient> client = ValueNotifier(
+    GraphQLClient(
+        link: httpLink,
+        cache: GraphQLCache(store: InMemoryStore()),
+    ),
+  );
+
+  var app = GraphQLProvider(client: client, child: MyApp());
+
+  // runApp(const MyApp());
+  runApp(app);
 }
 
 class MyApp extends StatelessWidget {
