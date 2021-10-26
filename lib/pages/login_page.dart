@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:login_1/pages/registration_page.dart';
 import 'package:login_1/widgets/button.dart';
 import 'package:login_1/widgets/header_container.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -98,3 +99,4 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+
