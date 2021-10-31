@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:login_1/pages/registration_page.dart';
 import 'package:login_1/widgets/button.dart';
 import 'package:login_1/widgets/header_container.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -28,8 +27,8 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                    _textInput(hint: 'Email', icon: Icons.email),
-                    _textInput(hint: 'Password', icon: Icons.vpn_key),
+                    _textInput(hint: 'Email', icon: Icons.email, hideText: false),
+                    _textInput(hint: 'Password', icon: Icons.vpn_key, hideText: true),
                     Container(
                       margin: EdgeInsets.only(
                         top: 10,
@@ -81,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _textInput({controller, hint, icon}) {
+  Widget _textInput({controller, hint, icon, hideText}) {
     return Container(
       margin: EdgeInsets.only(top: 10),
       decoration: BoxDecoration(
@@ -90,6 +89,7 @@ class _LoginPageState extends State<LoginPage> {
       padding: EdgeInsets.only(left: 10),
       child: TextFormField(
         controller: controller,
+        obscureText: hideText,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: hint,

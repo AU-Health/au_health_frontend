@@ -28,9 +28,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                     _textInput(hint: 'Your AU Email', icon: Icons.email),
-                     _textInput(hint: 'Create Password', icon: Icons.vpn_key),
-                     _textInput(hint: 'Confirm Password', icon: Icons.vpn_key),
+                     _textInput(hint: 'Your AU Email', icon: Icons.email, hideText: false),
+                     _textInput(hint: 'Create Password', icon: Icons.vpn_key, hideText: true),
+                     _textInput(hint: 'Confirm Password', icon: Icons.vpn_key, hideText: true),
                     Expanded(
                       child: Center(
                         child: ButtonWidget(
@@ -69,7 +69,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       ),
     );
   }
-  Widget _textInput({controller, hint, icon}) {
+  Widget _textInput({controller, hint, icon, hideText}) {
     return Container(
       margin: EdgeInsets.only(top: 10),
       decoration: BoxDecoration(
@@ -78,6 +78,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       padding: EdgeInsets.only(left: 10),
       child: TextFormField(
         controller: controller,
+        obscureText: hideText,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: hint,
