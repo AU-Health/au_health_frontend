@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _textInput({controller, hint, icon}) {
+  Widget _textInput({controller, hint, icon, hideText}) {
     return Container(
       margin: const EdgeInsets.only(top: 10),
       decoration: const BoxDecoration(
@@ -98,6 +98,7 @@ class _LoginPageState extends State<LoginPage> {
       padding: const EdgeInsets.only(left: 10),
       child: TextFormField(
         controller: controller,
+        obscureText: hideText,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: hint,
