@@ -1,0 +1,16 @@
+targets:
+  $default:
+    builders:
+      artemis:
+        options:
+          # custom configuration options!
+          generate_helpers: true
+          schema_mapping:
+            - output: lib/graphql/graphql_api.dart
+              schema: lib/graphql/schema.graphql
+              queries_glob: lib/graphql/queries/**.graphql
+          scalar_mapping:
+            - graphql_type: UUID
+              dart_type: String
+            - graphql_type: DateTime
+              dart_type: DateTime
