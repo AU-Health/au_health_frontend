@@ -12,17 +12,14 @@ class _HeaderContainerState extends State<HeaderContainer> {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.35,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(100)),
-          color: Color(0xFF186C58),
-    ),
-      child: Center(
-        child:
-        Text(
-            'Welcome to AU Cares',
-            style: TextStyle(
-              fontSize: 27,
-              color: Colors.white),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(100)),
+        color: Color(0xFF186C58),
+      ),
+      child: const Center(
+        child: Text(
+          'Welcome to AU Cares',
+          style: TextStyle(fontSize: 27, color: Colors.white),
         ),
       ),
     );

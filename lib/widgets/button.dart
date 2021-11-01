@@ -15,7 +15,7 @@ class ButtonWidget extends StatelessWidget {
         // width: double.infinity,
         width: MediaQuery.of(context).size.width * 0.6,
         height: 60,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xFF6CC551),
           borderRadius: BorderRadius.all(
             Radius.circular(100),
@@ -24,7 +24,7 @@ class ButtonWidget extends StatelessWidget {
         alignment: Alignment.center,
         child: Text(
           buttonText,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 20,
             color: Colors.white,
             fontWeight: FontWeight.bold,
