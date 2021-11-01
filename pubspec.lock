@@ -22,13 +22,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.0"
-  artemis:
-    dependency: "direct main"
-    description:
-      name: artemis
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "7.2.6-beta"
   async:
     dependency: transitive
     description:
@@ -425,7 +418,7 @@ packages:
     source: hosted
     version: "0.12.10"
   meta:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: meta
       url: "https://pub.dartlang.org"
