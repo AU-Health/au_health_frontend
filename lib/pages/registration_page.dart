@@ -48,24 +48,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         child: Center(
                             child: ButtonWidget(
                           onClick: () async {
-                            final mutation = GRegisterReq((b) => b
-                              ..vars.input.email = _emailController.text
-                              ..vars.input.password = _passwordController.text);
-
-                            final result = await client
-                                .request(mutation)
-                                .firstWhere((response) =>
-                                    response.dataSource !=
-                                    DataSource.Optimistic);
-
-                            final data = result.data?.register.toString();
-
-                            result.graphqlErrors?.forEach((err) {
-                              final msg = err.message;
-                              debugPrint('error $msg');
-                            });
-
-                            debugPrint('result $data');
+                            await _register(
+                                email: _emailController.text,
+                                password: _passwordController.text);
                           },
                           buttonText: "Register",
                         )),
@@ -98,6 +83,25 @@ class _RegistrationPageState extends State<RegistrationPage> {
         ),
       ),
     );
+  }
+
+  _register({required String email, required String password}) async {
+    final mutation = GRegisterReq((b) => b
+      ..vars.input.email = email
+      ..vars.input.password = password);
+
+    final result = await client
+        .request(mutation)
+        .firstWhere((response) => response.dataSource != DataSource.Optimistic);
+
+    final data = result.data?.register.toString();
+
+    result.graphqlErrors?.forEach((err) {
+      final msg = err.message;
+      debugPrint('error $msg');
+    });
+
+    debugPrint('result $data');
   }
 
   Widget _textInput({controller, hint, icon}) {

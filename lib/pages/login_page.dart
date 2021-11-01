@@ -1,4 +1,6 @@
+import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import '../pages/registration_page.dart';
 import '../widgets/button.dart';
 import '../widgets/header_container.dart';
@@ -11,6 +13,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final client = GetIt.I<Client>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,8 +33,14 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                    _textInput(hint: 'Email', icon: Icons.email),
-                    _textInput(hint: 'Password', icon: Icons.vpn_key),
+                    _textInput(
+                        controller: _emailController,
+                        hint: 'Email',
+                        icon: Icons.email),
+                    _textInput(
+                        controller: _passwordController,
+                        hint: 'Password',
+                        icon: Icons.vpn_key),
                     Container(
                       margin: const EdgeInsets.only(
                         top: 10,
