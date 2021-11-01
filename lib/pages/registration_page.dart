@@ -1,8 +1,9 @@
-import 'package:artemis/client.dart';
+import '../widgets/button.dart';
+import '../widgets/header_container.dart';
+import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
-import 'package:login_1/graphql/graphql_api.graphql.dart';
-import 'package:login_1/widgets/button.dart';
-import 'package:login_1/widgets/header_container.dart';
+import 'package:get_it/get_it.dart';
+import '../graphql/queries/register.req.gql.dart';
 
 import 'login_page.dart';
 
@@ -14,8 +15,7 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
-  final client = ArtemisClient("http://localhost:8000/graphql");
-
+  final client = GetIt.I<Client>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -48,21 +48,24 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         child: Center(
                             child: ButtonWidget(
                           onClick: () async {
-                            final mutation = RegisterMutation(
-                                variables: RegisterArguments(
-                                    input: NewUser(
-                                        email: _emailController.text,
-                                        password: _passwordController.text)));
+                            final mutation = GRegisterReq((b) => b
+                              ..vars.input.email = _emailController.text
+                              ..vars.input.password = _passwordController.text);
 
-                            final response = await client.execute(mutation);
+                            final result = await client
+                                .request(mutation)
+                                .firstWhere((response) =>
+                                    response.dataSource !=
+                                    DataSource.Optimistic);
 
-                            final data = response.data.toString();
+                            final data = result.data?.register.toString();
 
-                            response.errors?.forEach((error) {
-                              debugPrint('error: $error');
+                            result.graphqlErrors?.forEach((err) {
+                              final msg = err.message;
+                              debugPrint('error $msg');
                             });
 
-                            debugPrint('data: $data');
+                            debugPrint('result $data');
                           },
                           buttonText: "Register",
                         )),
