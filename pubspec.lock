@@ -22,6 +22,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.0"
+  artemis:
+    dependency: "direct main"
+    description:
+      name: artemis
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.2.6-beta"
   async:
     dependency: transitive
     description:
@@ -287,6 +294,13 @@ packages:
   gql:
     dependency: transitive
     description:
+      name: glob
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
+  gql:
+    dependency: "direct main"
+    description:
       name: gql
       url: "https://pub.dartlang.org"
     source: hosted
@@ -311,7 +325,7 @@ packages:
       name: gql_exec
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "0.3.1-alpha+1635149947799"
   gql_http_link:
     dependency: "direct main"
     description:
@@ -411,7 +425,7 @@ packages:
     source: hosted
     version: "0.12.10"
   meta:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: meta
       url: "https://pub.dartlang.org"
@@ -451,7 +465,7 @@ packages:
       name: path_provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.5"
+    version: "2.0.6"
   path_provider_linux:
     dependency: transitive
     description:
