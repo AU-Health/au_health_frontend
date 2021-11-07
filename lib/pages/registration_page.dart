@@ -1,11 +1,13 @@
+import 'package:aucares/widgets/error_dialog.dart';
+
 import '../widgets/button.dart';
 import '../widgets/header_container.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import '../graphql/queries/register.req.gql.dart';
-
 import 'login_page.dart';
+import 'package:gql_exec/gql_exec.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({Key? key}) : super(key: key);
@@ -85,6 +87,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
     );
   }
 
+  _showErrors({required List<GraphQLError> errors}) {
+    final errorDialog = GraphQLErrorDialog(graphqlErrors: errors);
+
+    showDialog(context: context, builder: (context) => errorDialog);
+  }
+
   _register({required String email, required String password}) async {
     final mutation = GRegisterReq((b) => b
       ..vars.input.email = email
@@ -94,12 +102,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
         .request(mutation)
         .firstWhere((response) => response.dataSource != DataSource.Optimistic);
 
-    final data = result.data?.register.toString();
+    if (result.graphqlErrors != null) {
+      _showErrors(errors: result.graphqlErrors!);
+      return;
+    }
 
-    result.graphqlErrors?.forEach((err) {
-      final msg = err.message;
-      debugPrint('error $msg');
-    });
+    final data = result.data?.register.toString();
 
     debugPrint('result $data');
   }
