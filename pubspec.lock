@@ -290,7 +290,7 @@ packages:
       name: gql
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.13.1-alpha+1635149947792"
+    version: "0.13.0"
   gql_build:
     dependency: transitive
     description:
@@ -311,7 +311,7 @@ packages:
       name: gql_exec
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.1-alpha+1635149947799"
+    version: "0.3.0"
   gql_http_link:
     dependency: "direct main"
     description:
@@ -451,7 +451,7 @@ packages:
       name: path_provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.6"
+    version: "2.0.5"
   path_provider_linux:
     dependency: transitive
     description:

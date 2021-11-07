@@ -3,6 +3,7 @@ import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'pages/login_page.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 void setup() async {
   final client = await initClient();
