@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gql_exec/gql_exec.dart';
 
 /// Build error dialog to show when there is an error. Use [showDialog] to show the errors on the page.
 class ErrorDialog extends StatelessWidget {
@@ -21,4 +22,24 @@ class ErrorDialog extends StatelessWidget {
       ],
     );
   }
+}
+
+/// Show an error message in a dialog box.
+showError({required BuildContext context, required String text}) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return ErrorDialog(text: text);
+    },
+  );
+}
+
+/// Show errors returned from the GraphQL server.
+showGraphQLErrors(
+    {required BuildContext context, required List<GraphQLError> errors}) {
+  final String errorText = errors.map((GraphQLError error) {
+    return error.message;
+  }).join("\n");
+
+  showError(context: context, text: errorText);
 }

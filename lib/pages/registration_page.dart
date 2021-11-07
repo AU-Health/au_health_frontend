@@ -1,3 +1,4 @@
+import 'package:aucares/pages/survey.dart';
 import 'package:aucares/widgets/error_dialog.dart';
 
 import '../widgets/sign_in.dart';
@@ -95,27 +96,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
     );
   }
 
-  /// Show errors returned from the GraphQL server.
-  _showServerErrors({required List<GraphQLError> errors}) {
-    final message = errors.map((e) => e.message).join("\n");
-
-    _showError(message: message);
-  }
-
-  /// Show an error message in a dialog box.
-  _showError({required String message}) {
-    final errorDialog = ErrorDialog(text: message);
-
-    showDialog(context: context, builder: (context) => errorDialog);
-  }
-
   /// Register the new user.
   _register(
       {required String email,
       required String password,
       required String confirmPassword}) async {
     if (password != confirmPassword) {
-      _showError(message: "Passwords do not match");
+      showError(context: context, text: "Passwords do not match");
       return;
     }
 
@@ -128,12 +115,18 @@ class _RegistrationPageState extends State<RegistrationPage> {
         .firstWhere((response) => response.dataSource != DataSource.Optimistic);
 
     if (result.graphqlErrors != null) {
-      _showServerErrors(errors: result.graphqlErrors!);
+      showGraphQLErrors(context: context, errors: result.graphqlErrors!);
       return;
     }
 
     final data = result.data?.register.toString();
 
     debugPrint('result $data');
+
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const Survey(),
+        ));
   }
 }

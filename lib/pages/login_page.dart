@@ -1,3 +1,6 @@
+import 'package:aucares/graphql/queries/login.req.gql.dart';
+import 'package:aucares/pages/survey.dart';
+import 'package:aucares/widgets/error_dialog.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -57,7 +60,9 @@ class _LoginPageState extends State<LoginPage> {
                         child: SignInButton(
                           buttonText: "Login",
                           onClick: () async {
-                            return;
+                            _login(
+                                email: _emailController.text,
+                                password: _passwordController.text);
                           },
                         ),
                       ),
@@ -90,5 +95,30 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  _login({required String email, required String password}) async {
+    final mutation = GLoginReq((b) => b
+      ..vars.input.email = email
+      ..vars.input.password = password);
+
+    final result = await client
+        .request(mutation)
+        .firstWhere((response) => response.dataSource != DataSource.Optimistic);
+
+    if (result.hasErrors) {
+      showGraphQLErrors(context: context, errors: result.graphqlErrors!);
+      return;
+    }
+
+    final data = result.data?.login.toString();
+
+    debugPrint('result $data');
+
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const Survey(),
+        ));
   }
 }
