@@ -4,6 +4,7 @@ import 'package:aucares/widgets/error_dialog.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+
 import '../pages/registration_page.dart';
 import '../widgets/sign_in.dart';
 

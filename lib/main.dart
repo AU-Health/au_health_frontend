@@ -1,7 +1,8 @@
-import './graphql/client.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+
+import './graphql/client.dart';
 import 'pages/login_page.dart';
 
 void setup() async {

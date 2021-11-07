@@ -1,13 +1,12 @@
 import 'package:aucares/pages/survey.dart';
 import 'package:aucares/widgets/error_dialog.dart';
-
-import '../widgets/sign_in.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+
 import '../graphql/queries/register.req.gql.dart';
+import '../widgets/sign_in.dart';
 import 'login_page.dart';
-import 'package:gql_exec/gql_exec.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({Key? key}) : super(key: key);
