@@ -44,8 +44,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       _textInput(
                           hint: 'Create Password',
                           icon: Icons.vpn_key,
-                          controller: _passwordController),
-                      _textInput(hint: 'Confirm Password', icon: Icons.vpn_key),
+                          controller: _passwordController,
+                          hideText: true),
+                      _textInput(
+                          hint: 'Confirm Password',
+                          icon: Icons.vpn_key,
+                          hideText: true),
                       Expanded(
                         child: Center(
                             child: ButtonWidget(

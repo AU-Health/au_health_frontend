@@ -40,7 +40,8 @@ class _LoginPageState extends State<LoginPage> {
                     _textInput(
                         controller: _passwordController,
                         hint: 'Password',
-                        icon: Icons.vpn_key),
+                        icon: Icons.vpn_key,
+                        hideText: true),
                     Container(
                       margin: const EdgeInsets.only(
                         top: 10,
@@ -89,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _textInput({controller, hint, icon, hideText}) {
+  Widget _textInput({controller, hint, icon, hideText = false}) {
     return Container(
       margin: const EdgeInsets.only(top: 10),
       decoration: const BoxDecoration(
