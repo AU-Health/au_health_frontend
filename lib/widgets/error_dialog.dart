@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:gql_exec/gql_exec.dart';
 
-class GraphQLErrorDialog extends StatelessWidget {
-  const GraphQLErrorDialog({Key? key, required this.graphqlErrors})
-      : super(key: key);
+/// Build error dialog to show when there is an error. Use [showDialog] to show the errors on the page.
+class ErrorDialog extends StatelessWidget {
+  const ErrorDialog({Key? key, required this.text}) : super(key: key);
 
-  final List<GraphQLError> graphqlErrors;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text("Error"),
-      content: Text(graphqlErrors.map((e) => e.message).join("\n")),
+      content: Text(text),
       actions: <Widget>[
         TextButton(
           child: const Text("OK"),

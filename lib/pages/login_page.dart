@@ -2,8 +2,7 @@ import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import '../pages/registration_page.dart';
-import '../widgets/button.dart';
-import '../widgets/header_container.dart';
+import '../widgets/sign_in.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -25,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
         padding: const EdgeInsets.only(bottom: 30),
         child: Column(
           children: <Widget>[
-            const HeaderContainer(),
+            const SignInHeader(),
             Expanded(
               flex: 1,
               child: Container(
@@ -55,8 +54,11 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Expanded(
                       child: Center(
-                        child: ButtonWidget(
+                        child: SignInButton(
                           buttonText: "Login",
+                          onClick: () async {
+                            return;
+                          },
                         ),
                       ),
                     ),

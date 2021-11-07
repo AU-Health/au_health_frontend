@@ -1,7 +1,6 @@
 import 'package:aucares/widgets/error_dialog.dart';
 
-import '../widgets/button.dart';
-import '../widgets/header_container.dart';
+import '../widgets/sign_in.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -20,6 +19,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final client = GetIt.I<Client>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         padding: const EdgeInsets.only(bottom: 30),
         child: Column(
           children: <Widget>[
-            const HeaderContainer(),
+            const SignInHeader(),
             Expanded(
               flex: 1,
               child: Form(
@@ -49,14 +50,17 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       _textInput(
                           hint: 'Confirm Password',
                           icon: Icons.vpn_key,
+                          controller: _confirmPasswordController,
                           hideText: true),
                       Expanded(
                         child: Center(
-                            child: ButtonWidget(
+                            child: SignInButton(
                           onClick: () async {
                             await _register(
                                 email: _emailController.text,
-                                password: _passwordController.text);
+                                password: _passwordController.text,
+                                confirmPassword:
+                                    _confirmPasswordController.text);
                           },
                           buttonText: "Register",
                         )),
@@ -91,13 +95,27 @@ class _RegistrationPageState extends State<RegistrationPage> {
     );
   }
 
-  _showErrors({required List<GraphQLError> errors}) {
-    final errorDialog = GraphQLErrorDialog(graphqlErrors: errors);
+  _showServerErrors({required List<GraphQLError> errors}) {
+    final message = errors.map((e) => e.message).join("\n");
+
+    _showError(message: message);
+  }
+
+  _showError({required String message}) {
+    final errorDialog = ErrorDialog(text: message);
 
     showDialog(context: context, builder: (context) => errorDialog);
   }
 
-  _register({required String email, required String password}) async {
+  _register(
+      {required String email,
+      required String password,
+      required String confirmPassword}) async {
+    if (password != confirmPassword) {
+      _showError(message: "Passwords do not match");
+      return;
+    }
+
     final mutation = GRegisterReq((b) => b
       ..vars.input.email = email
       ..vars.input.password = password);
@@ -107,7 +125,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         .firstWhere((response) => response.dataSource != DataSource.Optimistic);
 
     if (result.graphqlErrors != null) {
-      _showErrors(errors: result.graphqlErrors!);
+      _showServerErrors(errors: result.graphqlErrors!);
       return;
     }
 

@@ -11,9 +11,7 @@ void setup() async {
 }
 
 void main() async {
-  final client = await initClient();
-
-  GetIt.I.registerSingleton<Client>(client);
+  setup();
   runApp(const App());
 }
 
@@ -23,8 +21,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Login',
+      // debugShowCheckedModeBanner: false,
+      title: 'AUCares',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
