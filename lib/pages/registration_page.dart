@@ -38,20 +38,20 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
-                      _textInput(
-                          hint: 'Your AU Email',
+                      SignInTextInput(
+                          hintText: 'Your AU Email',
                           icon: Icons.email,
                           controller: _emailController),
-                      _textInput(
-                          hint: 'Create Password',
+                      SignInTextInput(
+                          hintText: 'Create Password',
                           icon: Icons.vpn_key,
                           controller: _passwordController,
-                          hideText: true),
-                      _textInput(
-                          hint: 'Confirm Password',
+                          obscureText: true),
+                      SignInTextInput(
+                          hintText: 'Confirm Password',
                           icon: Icons.vpn_key,
                           controller: _confirmPasswordController,
-                          hideText: true),
+                          obscureText: true),
                       Expanded(
                         child: Center(
                             child: SignInButton(
@@ -95,18 +95,21 @@ class _RegistrationPageState extends State<RegistrationPage> {
     );
   }
 
+  /// Show errors returned from the GraphQL server.
   _showServerErrors({required List<GraphQLError> errors}) {
     final message = errors.map((e) => e.message).join("\n");
 
     _showError(message: message);
   }
 
+  /// Show an error message in a dialog box.
   _showError({required String message}) {
     final errorDialog = ErrorDialog(text: message);
 
     showDialog(context: context, builder: (context) => errorDialog);
   }
 
+  /// Register the new user.
   _register(
       {required String email,
       required String password,
@@ -132,24 +135,5 @@ class _RegistrationPageState extends State<RegistrationPage> {
     final data = result.data?.register.toString();
 
     debugPrint('result $data');
-  }
-
-  Widget _textInput({controller, hint, icon, hideText = false}) {
-    return Container(
-      margin: const EdgeInsets.only(top: 10),
-      decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-          color: Colors.white),
-      padding: const EdgeInsets.only(left: 10),
-      child: TextFormField(
-        controller: controller,
-        obscureText: hideText,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: hint,
-          prefixIcon: Icon(icon),
-        ),
-      ),
-    );
   }
 }

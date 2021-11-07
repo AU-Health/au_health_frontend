@@ -32,15 +32,15 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                    _textInput(
+                    SignInTextInput(
                         controller: _emailController,
-                        hint: 'Email',
+                        hintText: 'Email',
                         icon: Icons.email),
-                    _textInput(
+                    SignInTextInput(
                         controller: _passwordController,
-                        hint: 'Password',
+                        hintText: 'Password',
                         icon: Icons.vpn_key,
-                        hideText: true),
+                        obscureText: true),
                     Container(
                       margin: const EdgeInsets.only(
                         top: 10,
@@ -87,25 +87,6 @@ class _LoginPageState extends State<LoginPage> {
               ),
             )
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _textInput({controller, hint, icon, hideText = false}) {
-    return Container(
-      margin: const EdgeInsets.only(top: 10),
-      decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-          color: Colors.white),
-      padding: const EdgeInsets.only(left: 10),
-      child: TextFormField(
-        controller: controller,
-        obscureText: hideText,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: hint,
-          prefixIcon: Icon(icon),
         ),
       ),
     );

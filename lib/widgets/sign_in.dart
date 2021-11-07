@@ -59,3 +59,39 @@ class SignInButton extends StatelessWidget {
     );
   }
 }
+
+/// Text input for sign in pages.
+class SignInTextInput extends StatelessWidget {
+  final TextEditingController controller;
+  final String hintText;
+  final IconData icon;
+  final bool obscureText;
+
+  const SignInTextInput({
+    Key? key,
+    required this.controller,
+    required this.hintText,
+    required this.icon,
+    this.obscureText = false,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 10),
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          color: Colors.white),
+      padding: const EdgeInsets.only(left: 10),
+      child: TextFormField(
+        controller: controller,
+        obscureText: obscureText,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: hintText,
+          prefixIcon: Icon(icon),
+        ),
+      ),
+    );
+  }
+}
