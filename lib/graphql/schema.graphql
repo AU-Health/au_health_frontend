@@ -1,0 +1,104 @@
+# Directs the executor to query only when the field exists.
+directive @ifdef on FIELD
+
+# Implement the DateTime<Utc> scalar
+#
+# The input/output is a string in RFC3339 format.
+scalar DateTime
+
+type HealthCheck {
+  database: Boolean!
+  redis: Boolean!
+  api: Boolean!
+}
+
+# Input from GQL, consume with login_user() to get a User.
+input LoginUser {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  # Logs a user in. Sets cookie on their client.
+  login(
+    # Login User credentials
+    loginUser: LoginUser!
+  ): User!
+
+  # Registers a new user. Sets a cookie on their client, as if they logged in.
+  register(
+    # New User information
+    newUser: NewUser!
+  ): User!
+  logout: Boolean!
+  createSurveyResponse(
+    # Survey submission
+    surveyResponse: NewSurveyResponse!
+  ): Boolean!
+  createQuestion(
+    # New Question to add
+    question: NewQuestion!
+  ): Question!
+}
+
+input NewAnswer {
+  questionId: UUID!
+  answer: String!
+}
+
+input NewQuestion {
+  question: String!
+  category: String!
+  responseType: String!
+  responses: [String!]
+}
+
+input NewSurveyResponse {
+  answers: [NewAnswer!]!
+}
+
+# Input from GQL
+input NewUser {
+  email: String!
+  password: String!
+}
+
+# Root for all GraphQL Queries.
+type Query {
+  # Checks for the currently logged in user by parsing the cookie.
+  me: User
+  healthCheck: HealthCheck!
+}
+
+type Question {
+  id: UUID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  question: String!
+  categoryId: UUID!
+  responseTypeId: UUID!
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+# A UUID is a unique 128-bit number, stored as 16 octets. UUIDs are parsed as Strings
+# within GraphQL. UUIDs are used to assign unique identifiers to entities without requiring a central
+# allocating authority.
+#
+# # References
+#
+# * [Wikipedia: Universally Unique Identifier](http://en.wikipedia.org/wiki/Universally_unique_identifier)
+# * [RFC4122: A Universally Unique IDentifier (UUID) URN Namespace](http://tools.ietf.org/html/rfc4122)
+scalar UUID
+
+# User with all fields attached. Returned from DB.
+type User {
+  id: UUID!
+  email: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  role: Role!
+}

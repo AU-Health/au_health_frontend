@@ -1,9 +1,24 @@
 targets:
   $default:
     builders:
-      artemis:
+      gql_build|schema_builder:
+        enabled: true
+      gql_build|ast_builder:
+        enabled: true
+      gql_build|data_builder:
+        enabled: true
         options:
-          schema_mapping:
-            - output: lib/graphql_api.dart
-              schema: lib/my_graphql_schema.graphql
-              queries_glob: lib/**.graphql
+          schema: aucares|lib/graphql/schema.graphql
+      gql_build|var_builder:
+        enabled: true
+        options:
+          schema: aucares|lib/graphql/schema.graphql
+      gql_build|serializer_builder:
+        enabled: true
+        options:
+          schema: aucares|lib/graphql/schema.graphql
+
+      ferry_generator|req_builder:
+        enabled: true
+        options:
+          schema: aucares|lib/graphql/schema.graphql

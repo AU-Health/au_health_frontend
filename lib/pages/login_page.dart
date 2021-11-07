@@ -1,7 +1,9 @@
+import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
-import 'package:login_1/pages/registration_page.dart';
-import 'package:login_1/widgets/button.dart';
-import 'package:login_1/widgets/header_container.dart';
+import 'package:get_it/get_it.dart';
+import '../pages/registration_page.dart';
+import '../widgets/button.dart';
+import '../widgets/header_container.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -11,36 +13,45 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final client = GetIt.I<Client>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       //backgroundColor: Color(0xFF186C58),
       body: Container(
-        padding: EdgeInsets.only(bottom: 30),
+        padding: const EdgeInsets.only(bottom: 30),
         child: Column(
           children: <Widget>[
-            HeaderContainer(),
+            const HeaderContainer(),
             Expanded(
               flex: 1,
               child: Container(
-                margin: EdgeInsets.only(left: 20, right: 20, top: 80),
+                margin: const EdgeInsets.only(left: 20, right: 20, top: 80),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                    _textInput(hint: 'Email', icon: Icons.email, hideText: false),
-                    _textInput(hint: 'Password', icon: Icons.vpn_key, hideText: true),
+                    _textInput(
+                        controller: _emailController,
+                        hint: 'Email',
+                        icon: Icons.email),
+                    _textInput(
+                        controller: _passwordController,
+                        hint: 'Password',
+                        icon: Icons.vpn_key),
                     Container(
-                      margin: EdgeInsets.only(
+                      margin: const EdgeInsets.only(
                         top: 10,
                         right: 10,
                         bottom: 10,
                       ),
                       alignment: Alignment.centerRight,
-                      child: Text(
+                      child: const Text(
                         "Forgot password?",
                       ),
                     ),
-
                     Expanded(
                       child: Center(
                         child: ButtonWidget(
@@ -49,26 +60,24 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     InkWell(
-                      onTap:() {
+                      onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => RegistrationPage()));
+                                builder: (context) =>
+                                    const RegistrationPage()));
                       },
                       child: RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                                text: "Don't have an account yet? ",
-                                style: TextStyle(color: Colors.black),
-                            ),
-                            TextSpan(
-                                text: "Sign up",
-                                style: TextStyle(color: Color(0xFF186C58)),
-                            ),
-                          ]
-                        )
-                      ),
+                          text: const TextSpan(children: [
+                        TextSpan(
+                          text: "Don't have an account yet? ",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        TextSpan(
+                          text: "Sign up",
+                          style: TextStyle(color: Color(0xFF186C58)),
+                        ),
+                      ])),
                     ),
                   ],
                 ),
@@ -82,11 +91,11 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _textInput({controller, hint, icon, hideText}) {
     return Container(
-      margin: EdgeInsets.only(top: 10),
-      decoration: BoxDecoration(
+      margin: const EdgeInsets.only(top: 10),
+      decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20)),
           color: Colors.white),
-      padding: EdgeInsets.only(left: 10),
+      padding: const EdgeInsets.only(left: 10),
       child: TextFormField(
         controller: controller,
         obscureText: hideText,
@@ -99,4 +108,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
