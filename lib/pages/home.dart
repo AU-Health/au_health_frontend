@@ -74,9 +74,9 @@ class HomePage extends StatelessWidget {
 }
 
 class _Home extends StatefulWidget {
-  _Home({Key? key, this.me}) : super(key: key);
+  const _Home({Key? key, this.me}) : super(key: key);
 
-  GMeData_me? me;
+  final GMeData_me? me;
 
   @override
   _HomeState createState() => _HomeState();
