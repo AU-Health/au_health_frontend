@@ -1,12 +1,13 @@
+import 'package:aucares/graphql/client.dart';
 import 'package:aucares/graphql/queries/login.req.gql.dart';
-import 'package:aucares/pages/survey.dart';
-import 'package:aucares/widgets/error_dialog.dart';
+import 'package:aucares/pages/home.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
-import '../pages/registration_page.dart';
+import '../widgets/navigation.dart';
 import '../widgets/sign_in.dart';
+import 'register.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -24,6 +25,11 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       //backgroundColor: Color(0xFF186C58),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF186C58),
+        elevation: 0,
+        toolbarHeight: 50,
+      ),
       body: Container(
         padding: const EdgeInsets.only(bottom: 30),
         child: Column(
@@ -73,8 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    const RegistrationPage()));
+                                builder: (context) => const RegisterPage()));
                       },
                       child: RichText(
                           text: const TextSpan(children: [
@@ -98,28 +103,24 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  /// Login the user. If successful, sends them to the survey.
   _login({required String email, required String password}) async {
     final mutation = GLoginReq((b) => b
       ..vars.input.email = email
       ..vars.input.password = password);
 
-    final result = await client
-        .request(mutation)
-        .firstWhere((response) => response.dataSource != DataSource.Optimistic);
+    client.refreshCache();
 
-    if (result.hasErrors) {
-      showGraphQLErrors(context: context, errors: result.graphqlErrors!);
-      return;
-    }
+    final result = await client.mutate(mutation);
 
-    final data = result.data?.login.toString();
+    final data = result.handleErrorsOrUnwrap(context);
 
-    debugPrint('result $data');
+    if (data == null) return;
 
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const Survey(),
-        ));
+    final login = data.login.toString();
+
+    debugPrint('result $login');
+
+    AppNavigation.hardPush(context: context, page: HomePage());
   }
 }

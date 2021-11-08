@@ -1,21 +1,23 @@
+import 'package:aucares/graphql/client.dart';
 import 'package:aucares/pages/survey.dart';
 import 'package:aucares/widgets/error_dialog.dart';
+import 'package:aucares/widgets/navigation.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import '../graphql/queries/register.req.gql.dart';
 import '../widgets/sign_in.dart';
-import 'login_page.dart';
+import 'login.dart';
 
-class RegistrationPage extends StatefulWidget {
-  const RegistrationPage({Key? key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  _RegistrationPageState createState() => _RegistrationPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _RegistrationPageState extends State<RegistrationPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final client = GetIt.I<Client>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -25,6 +27,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF186C58),
+        elevation: 0,
+        toolbarHeight: 50,
+      ),
       body: Container(
         padding: const EdgeInsets.only(bottom: 30),
         child: Column(
@@ -95,7 +102,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     );
   }
 
-  /// Register the new user.
+  /// Register the user. Verifies their password. If successful, sends them to the survey.
   _register(
       {required String email,
       required String password,
@@ -109,23 +116,18 @@ class _RegistrationPageState extends State<RegistrationPage> {
       ..vars.input.email = email
       ..vars.input.password = password);
 
-    final result = await client
-        .request(mutation)
-        .firstWhere((response) => response.dataSource != DataSource.Optimistic);
+    client.refreshCache();
 
-    if (result.graphqlErrors != null) {
-      showGraphQLErrors(context: context, errors: result.graphqlErrors!);
-      return;
-    }
+    final result = await client.mutate(mutation);
 
-    final data = result.data?.register.toString();
+    final data = result.handleErrorsOrUnwrap(context);
 
-    debugPrint('result $data');
+    if (data == null) return;
 
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const Survey(),
-        ));
+    final register = data.register.toString();
+
+    debugPrint('result $register');
+
+    AppNavigation.hardPush(context: context, page: const SurveyPage());
   }
 }

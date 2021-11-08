@@ -9,7 +9,7 @@ class SignInHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.35,
+      height: MediaQuery.of(context).size.height * 0.33,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(100)),
         color: Color(0xFF186C58),
@@ -20,6 +20,7 @@ class SignInHeader extends StatelessWidget {
           style: TextStyle(fontSize: 27, color: Colors.white),
         ),
       ),
+      padding: const EdgeInsets.only(bottom: 100),
     );
   }
 }

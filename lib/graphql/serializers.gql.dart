@@ -5,6 +5,10 @@ import 'package:aucares/graphql/queries/login.var.gql.dart' show GLoginVars;
 import 'package:aucares/graphql/queries/logout.data.gql.dart' show GLogoutData;
 import 'package:aucares/graphql/queries/logout.req.gql.dart' show GLogoutReq;
 import 'package:aucares/graphql/queries/logout.var.gql.dart' show GLogoutVars;
+import 'package:aucares/graphql/queries/me.data.gql.dart'
+    show GMeData, GMeData_me;
+import 'package:aucares/graphql/queries/me.req.gql.dart' show GMeReq;
+import 'package:aucares/graphql/queries/me.var.gql.dart' show GMeVars;
 import 'package:aucares/graphql/queries/register.data.gql.dart'
     show GRegisterData, GRegisterData_register;
 import 'package:aucares/graphql/queries/register.req.gql.dart'
@@ -42,6 +46,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GLogoutData,
   GLogoutReq,
   GLogoutVars,
+  GMeData,
+  GMeData_me,
+  GMeReq,
+  GMeVars,
   GNewAnswer,
   GNewQuestion,
   GNewSurveyResponse,

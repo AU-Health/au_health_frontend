@@ -1,18 +1,18 @@
+import 'package:aucares/pages/home.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import './graphql/client.dart';
-import 'pages/login_page.dart';
 
-void setup() async {
+Future<void> setup() async {
   final client = await initClient();
 
   GetIt.I.registerSingleton<Client>(client);
 }
 
 void main() async {
-  setup();
+  await setup();
   runApp(const App());
 }
 
@@ -27,7 +27,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginPage(),
+      home: HomePage(),
     );
   }
 }

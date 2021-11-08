@@ -2,16 +2,16 @@ import 'package:aucares/widgets/survey/quiz.dart';
 import 'package:aucares/widgets/survey/result.dart';
 import 'package:flutter/material.dart';
 
-class Survey extends StatefulWidget {
-  const Survey({Key? key}) : super(key: key);
+class SurveyPage extends StatefulWidget {
+  const SurveyPage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _SurveyState();
+    return _SurveyPageState();
   }
 }
 
-class _SurveyState extends State<Survey> {
+class _SurveyPageState extends State<SurveyPage> {
   final _questions = const [
     {
       'questionText': 'Welcome to the initial survey',
