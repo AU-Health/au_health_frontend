@@ -10,7 +10,7 @@ import 'package:gql_dio_link/gql_dio_link.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-Future<ferry.Client> initClient() async {
+Future<ferry.Client> initClient({required String apiUrl}) async {
   await Hive.initFlutter();
 
   final box = await Hive.openBox("graphql");
@@ -23,8 +23,7 @@ Future<ferry.Client> initClient() async {
   final cookieJar = CookieJar();
   dio.interceptors.add(CookieManager(cookieJar));
 
-  final link =
-      ferry.Link.from([DioLink('http://localhost:8000/graphql', client: dio)]);
+  final link = ferry.Link.from([DioLink(apiUrl, client: dio)]);
 
   final client = ferry.Client(
     link: link,

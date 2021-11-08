@@ -1,20 +1,6 @@
-import 'package:aucares/pages/home.dart';
-import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 
-import './graphql/client.dart';
-
-Future<void> setup() async {
-  final client = await initClient();
-
-  GetIt.I.registerSingleton<Client>(client);
-}
-
-void main() async {
-  await setup();
-  runApp(const App());
-}
+import 'pages/home.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
