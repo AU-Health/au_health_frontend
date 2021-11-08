@@ -1,6 +1,7 @@
 import 'package:aucares/graphql/client.dart';
 import 'package:aucares/graphql/queries/login.req.gql.dart';
 import 'package:aucares/pages/home.dart';
+import 'package:aucares/widgets/button.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -64,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Expanded(
                       child: Center(
-                        child: SignInButton(
+                        child: AppButton(
                           buttonText: "Login",
                           onClick: () async {
                             _login(

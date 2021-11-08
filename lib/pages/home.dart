@@ -1,9 +1,12 @@
+import 'package:aucares/graphql/client.dart';
+import 'package:aucares/graphql/queries/logout.req.gql.dart';
 import 'package:aucares/graphql/queries/me.data.gql.dart';
 import 'package:aucares/graphql/queries/me.req.gql.dart';
 import 'package:aucares/graphql/queries/me.var.gql.dart';
 import 'package:aucares/pages/login.dart';
 import 'package:aucares/pages/register.dart';
 import 'package:aucares/pages/survey.dart';
+import 'package:aucares/widgets/button.dart';
 import 'package:aucares/widgets/error_dialog.dart';
 import 'package:aucares/widgets/navigation.dart';
 import 'package:aucares/widgets/sign_in.dart';
@@ -55,31 +58,51 @@ class HomePage extends StatelessWidget {
     }
 
     if (response.hasErrors) {
-      showGraphQLErrors(context: context, errors: response.graphqlErrors!);
+      if (response.linkException != null) {
+        return ErrorDialog(text: response.linkException.toString());
+      }
+
+      if (response.graphqlErrors != null) {
+        showGraphQLErrors(context: context, errors: response.graphqlErrors!);
+      }
+
       return const Center(child: Text('Error'));
     }
 
-    return _Home(me: response.data!.me);
+    return _Home(me: response.data?.me);
   }
 }
 
-/// Homepage UI.
-class _Home extends StatelessWidget {
-  final GMeData_me? me;
+class _Home extends StatefulWidget {
+  _Home({Key? key, this.me}) : super(key: key);
 
-  const _Home({Key? key, this.me}) : super(key: key);
+  GMeData_me? me;
+
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+/// Homepage UI.
+class _HomeState extends State<_Home> {
+  final client = GetIt.I<Client>();
 
   @override
   Widget build(BuildContext context) {
     List<Widget> buttons;
 
-    if (me != null) {
+    if (widget.me != null) {
       buttons = [
-        Text('Hello, ${me!.email}!'),
+        Text('Hello, ${widget.me!.email}!'),
         NavButton(
             buttonText: "Take Survey",
             routeBuilder: () =>
-                MaterialPageRoute(builder: (context) => const SurveyPage()))
+                MaterialPageRoute(builder: (context) => const SurveyPage())),
+        AppButton(
+          buttonText: "Logout",
+          onClick: () async {
+            await _logout();
+          },
+        )
       ];
     } else {
       buttons = [
@@ -116,5 +139,31 @@ class _Home extends StatelessWidget {
                 ),
               )
             ])));
+  }
+
+  _logout() async {
+    final mutation = GLogoutReq((b) => b);
+
+    // client.refreshCache();
+
+    final result = await client.mutate(mutation);
+
+    client.refreshCache();
+
+    final data = result.handleErrorsOrUnwrap(context);
+
+    if (data == null) {
+      debugPrint("logout data is null!");
+      return;
+    }
+
+    final logout = data.logout.toString();
+
+    debugPrint('logout $logout');
+
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => HomePage()));
+
+    return;
   }
 }

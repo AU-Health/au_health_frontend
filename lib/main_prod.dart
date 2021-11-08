@@ -6,7 +6,7 @@ void main() async {
   const app = AppConfig(
       appName: "AUCares",
       environment: Environment.production,
-      apiUrl: "aucares.mattwilkinson.dev/graphql",
+      apiUrl: "https://aucares.mattwilkinson.dev/graphql",
       child: App());
 
   run(app: app);

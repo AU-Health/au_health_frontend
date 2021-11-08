@@ -1,5 +1,6 @@
 import 'package:aucares/graphql/client.dart';
 import 'package:aucares/pages/survey.dart';
+import 'package:aucares/widgets/button.dart';
 import 'package:aucares/widgets/error_dialog.dart';
 import 'package:aucares/widgets/navigation.dart';
 import 'package:ferry/ferry.dart';
@@ -61,7 +62,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           obscureText: true),
                       Expanded(
                         child: Center(
-                            child: SignInButton(
+                            child: AppButton(
                           onClick: () async {
                             await _register(
                                 email: _emailController.text,

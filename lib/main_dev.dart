@@ -6,7 +6,7 @@ void main() async {
   const app = AppConfig(
       appName: "AUCares Test",
       environment: Environment.development,
-      apiUrl: "localhost:8000/graphql",
+      apiUrl: "http://localhost:8000/graphql",
       child: App());
 
   run(app: app);
