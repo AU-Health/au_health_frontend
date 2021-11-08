@@ -1,0 +1,14 @@
+# app_identifier("com.mwilkinson.aucares") # The bundle identifier of your app
+# apple_id("mattwilki17@gmail.com") # Your Apple email address
+
+# itc_team_id("123718943") # App Store Connect Team ID
+# team_id("ZJZQWW37H6") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
+
+app_identifier(ENV["DEVELOPER_APP_IDENTIFIER"])
+apple_id(ENV["FASTLANE_APPLE_ID"])
+
+itc_team_id(ENV["APP_STORE_CONNECT_TEAM_ID"])
+team_id(ENV["DEVELOPER_PORTAL_TEAM_ID"])
