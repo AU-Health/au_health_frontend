@@ -1,4 +1,4 @@
-name: Dependabot Pub
+name: Dependabot
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   pub:
-    name: Dependabot Pub
+    name: Dependabot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
