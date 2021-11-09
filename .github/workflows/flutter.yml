@@ -1,12 +1,7 @@
 name: Flutter
 
-on:
-  push:
-    paths:
-      - "**.dart"
-  pull_request:
-    paths:
-      - "**.dart"
+on: [push, pull_request]
+
 jobs:
   analyzer:
     name: Analyze
