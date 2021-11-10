@@ -1,3 +1,6 @@
+# THIS DOESN'T WORK ATM
+# WAS TRYING TO USE THIS TUTORIAL
+# https://joshuamdeguzman.com/continuous-delivery-for-flutter-using-fastlane-and-github-actions-pt-3-ios/
 name: Deploy
 
 on:
