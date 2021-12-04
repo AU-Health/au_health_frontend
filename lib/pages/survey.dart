@@ -31,6 +31,7 @@ class _SurveyPageState extends State<SurveyPage> {
         {'text': 'I have started improving my hydration and water consumption in the last six months.', 'score': 4, 'yesFlag': false},
         {'text': 'I have been drinking adequate amounts of water and plan to continue to do so.', 'score': 5, 'yesFlag': false},
         {'text': 'I was working hard to ensure adequate hydration and water consumption, but have not been prioritizing it lately.', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
@@ -44,6 +45,7 @@ class _SurveyPageState extends State<SurveyPage> {
         {'text': 'Nearly every day', 'score': 4, 'yesFlag': false},
         {'text': 'Every day for the past 6 months+', 'score': 5, 'yesFlag': false},
         {'text': 'This used to affect me, but no longer does', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
@@ -57,6 +59,7 @@ class _SurveyPageState extends State<SurveyPage> {
         {'text': 'I have started improving my nutrient intake and balance in the last six months.', 'score': 4, 'yesFlag': false},
         {'text': 'I have been ensuring adequate nutrient intake and balance for over six months and plan to continue to do so.', 'score': 5, 'yesFlag': false},
         {'text': 'I was working hard to ensure adequate nutrient intake and balance, but have not been prioritizing it lately.', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
@@ -70,6 +73,7 @@ class _SurveyPageState extends State<SurveyPage> {
         {'text': 'Nearly every day', 'score': 4, 'yesFlag': false},
         {'text': 'Every day for the past 6 months+', 'score': 5, 'yesFlag': false},
         {'text': 'This used to affect me, but no longer does', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
@@ -84,6 +88,7 @@ class _SurveyPageState extends State<SurveyPage> {
         {'text': 'I have started improving the quality of my sleep and getting more sleep within the past 6 months.', 'score': 4, 'yesFlag': false},
         {'text': 'I have been getting good quality and good amounts of sleep for over 6 months.', 'score': 5, 'yesFlag': false},
         {'text': 'I was getting good quality and good amounts of sleep, but have not been prioritizing it lately.', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
@@ -97,6 +102,7 @@ class _SurveyPageState extends State<SurveyPage> {
         {'text': 'Nearly every day', 'score': 4, 'yesFlag': false},
         {'text': 'Every day for the past 6 months+', 'score': 5, 'yesFlag': false},
         {'text': 'This used to affect me, but no longer does', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
@@ -111,6 +117,7 @@ class _SurveyPageState extends State<SurveyPage> {
         {'text': 'I have started improving my level of physical activity in the last six months.', 'score': 4, 'yesFlag': false},
         {'text': 'I have been ensuring adequate physical activity in my personal life and plan to continue to do so.', 'score': 5, 'yesFlag': false},
         {'text': 'I was working hard to ensure adequate physical activity, but have not been prioritizing it lately.', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
@@ -125,6 +132,7 @@ class _SurveyPageState extends State<SurveyPage> {
         {'text': 'Nearly every day', 'score': 4, 'yesFlag': false},
         {'text': 'Every day for the past 6 months+', 'score': 5, 'yesFlag': false},
         {'text': 'This used to affect me, but no longer does', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
@@ -140,6 +148,7 @@ class _SurveyPageState extends State<SurveyPage> {
         {'text': 'I have started to make improvements in physical environment and follow strategies to reduce distractions in the last six months.', 'score': 4, 'yesFlag': false},
         {'text': 'I have been actively monitoring my personal environment to ensure that it supports my health and wellness for over half a year.', 'score': 5, 'yesFlag': false},
         {'text': 'I was working hard to ensure a satisfactory physical environment, but have not been prioritizing it lately.', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
@@ -154,6 +163,7 @@ class _SurveyPageState extends State<SurveyPage> {
         {'text': 'Nearly every day', 'score': 2, 'yesFlag': false},
         {'text': 'Every day for the past 6 months+', 'score': 1, 'yesFlag': false},
         {'text': 'This used to affect me, but no longer does', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
@@ -168,12 +178,12 @@ class _SurveyPageState extends State<SurveyPage> {
         {'text': 'I have started improving my management of stress in the last six months.', 'score': 4, 'yesFlag': false},
         {'text': 'I have been managing my stress levels for over six months and plan to continue to do so.', 'score': 5, 'yesFlag': false},
         {'text': 'I was working hard to ensure adequate stress management, but have not been prioritizing it lately.', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
       'questionText':
-      'Stress Management: Within the past 30 days, how often did you feel confident about your ability to cope with all the things you had to do and/or adequately manage your stress levels?'
-          '(*Note: Recommendations suggest that one should engage in 150 minutes of moderate aerobic activity)',
+      'Stress Management: Within the past 30 days, how often did you feel confident about your ability to cope with all the things you had to do and/or adequately manage your stress levels?',
       'answers': [
         {'text': 'Rarely'
           , 'score': 1, 'yesFlag': false},
@@ -182,6 +192,7 @@ class _SurveyPageState extends State<SurveyPage> {
         {'text': 'Nearly every day', 'score': 4, 'yesFlag': false},
         {'text': 'Every day for the past 6 months+', 'score': 5, 'yesFlag': false},
         {'text': 'This used to affect me, but no longer does', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
   ];
@@ -203,10 +214,16 @@ class _SurveyPageState extends State<SurveyPage> {
   void _answerQuestion(int score, bool yesFlag) {
     _totalScore += score;
     scoreArray[_questionIndex] = score;
-
-    setState(() {
+    if(yesFlag){
+      setState(() {
+        _questionIndex = _questionIndex - 1;
+      });
+    }
+    else {
+      setState(() {
         _questionIndex = _questionIndex + 1;
-    });
+      });
+    }
     debugPrint(_questionIndex.toString());
     debugPrint(yesFlag.toString());
     if (_questionIndex < _questions.length) {
