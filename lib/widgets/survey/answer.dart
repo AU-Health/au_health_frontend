@@ -20,7 +20,7 @@ class Answer extends StatelessWidget {
           backgroundColor: MaterialStateProperty.all(const Color(0xFF186C58)),
           textStyle: MaterialStateProperty.all(const TextStyle(
             color: Colors.white,
-            fontSize: 20.0,
+            fontSize: 15.0,
           )),
         ),
         child: Text(answerText),

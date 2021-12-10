@@ -14,58 +14,6 @@ class SurveyPage extends StatefulWidget {
 class _SurveyPageState extends State<SurveyPage> {
   final _questions = const [
     {
-      'questionText': 'Welcome to the initial survey',
-      'answers': [
-        {'text': 'Click here to start', 'score': -2, 'yesFlag': false},
-      ],
-    },
-    {
-      'questionText': 'Q1. On average, how many hours do you sleep per night?',
-      'answers': [
-        {'text': '0-3', 'score': -2, 'yesFlag': false},
-        {'text': '3-5', 'score': -2, 'yesFlag': false},
-        {'text': '5-8', 'score': -2, 'yesFlag': false},
-        {'text': '8+', 'score': -2, 'yesFlag': false},
-      ],
-    },
-    {
-      'questionText': 'Q2. How many times a day do you eat a handful size serving of fruits? (Note: two handfuls would count as two times)',
-      'answers': [
-        {'text': '0-1', 'score': -2, 'yesFlag': false},
-        {'text': '2-3', 'score': -2, 'yesFlag': false},
-        {'text': '4-5', 'score': -2, 'yesFlag': false},
-        {'text': '5+', 'score': -2, 'yesFlag': false},
-      ],
-    },
-    {
-      'questionText': ' Q3. How many times a day do you eat a handful size serving of vegetables? (Note: two handfuls would count as two times)',
-      'answers': [
-        {'text': '0-1', 'score': -2, 'yesFlag': false},
-        {'text': '2-3', 'score': -2, 'yesFlag': false},
-        {'text': '4-5', 'score': -2, 'yesFlag': false},
-        {'text': '5+', 'score': -2, 'yesFlag': false},
-      ],
-    },
-    {
-      'questionText': 'Q4. On average, how many 8oz glasses of water do you consume per day? (Note: an average size water bottle has 16oz of water and would therefore count as two 8oz glasses)',
-      'answers': [
-        {'text': '0-1', 'score': -2, 'yesFlag': false},
-        {'text': '2-3', 'score': -2, 'yesFlag': false},
-        {'text': '4-5', 'score': -2, 'yesFlag': false},
-        {'text': '5+', 'score': -2, 'yesFlag': false},
-      ],
-    },
-    {
-      'questionText':
-      'Q5. How many hours a week would you say that you exercise at an intensity where it becomes slightly difficult to carry on a conversation?',
-      'answers': [
-        {'text': '0-1 hour', 'score': -2, 'yesFlag': false},
-        {'text': '2-3 hours', 'score': -2, 'yesFlag': false},
-        {'text': '4-5 hours', 'score': -2, 'yesFlag': false},
-        {'text': '5+ hours', 'score': -2, 'yesFlag': false},
-      ],
-    },
-    {
       'questionText':
       'Please answer these specific questions to the best of your ability',//more specific
       'answers': [
@@ -83,6 +31,7 @@ class _SurveyPageState extends State<SurveyPage> {
         {'text': 'I have started improving my hydration and water consumption in the last six months.', 'score': 4, 'yesFlag': false},
         {'text': 'I have been drinking adequate amounts of water and plan to continue to do so.', 'score': 5, 'yesFlag': false},
         {'text': 'I was working hard to ensure adequate hydration and water consumption, but have not been prioritizing it lately.', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
@@ -96,24 +45,26 @@ class _SurveyPageState extends State<SurveyPage> {
         {'text': 'Nearly every day', 'score': 4, 'yesFlag': false},
         {'text': 'Every day for the past 6 months+', 'score': 5, 'yesFlag': false},
         {'text': 'This used to affect me, but no longer does', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
       'questionText':
-      'Fruits and Vegetables: What are your honest feelings on the topic of fruit and vegetable consumption right now?',
+      'Nutrition: What are your honest feelings on the topic of nutrition?',
       'answers': [
-        {'text': 'I am not interested in eating more fruits and vegetables right now.'
+        {'text': 'I am not interested in maintaining adequate nutrition right now.'
           , 'score': 1, 'yesFlag': false},
-        {'text': 'I have been thinking about eating more fruits and vegetables.', 'score': 2, 'yesFlag': false},
-        {'text': 'I have been thinking about specific ways to eat more fruits and vegetables.', 'score': 3, 'yesFlag': false},
-        {'text': 'I have started eating more fruits and vegetables in the last six months.', 'score': 4, 'yesFlag': false},
-        {'text': 'I have been eating adequate amounts of fruits and vegetables and plan to continue to do so.', 'score': 5, 'yesFlag': false},
-        {'text': 'I was working hard to ensure I was eating adequate amounts of fruits and vegetables, but have not been prioritizing it lately.', 'score': 6, 'yesFlag': false},
+        {'text': 'I have been interested in learning more about or improving my nutrient intake and balance.', 'score': 2, 'yesFlag': false},
+        {'text': 'I have been thinking about ways to achieve adequate nutrient intake and balance.', 'score': 3, 'yesFlag': false},
+        {'text': 'I have started improving my nutrient intake and balance in the last six months.', 'score': 4, 'yesFlag': false},
+        {'text': 'I have been ensuring adequate nutrient intake and balance for over six months and plan to continue to do so.', 'score': 5, 'yesFlag': false},
+        {'text': 'I was working hard to ensure adequate nutrient intake and balance, but have not been prioritizing it lately.', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
       'questionText':
-      'Fruits and Vegetables: Within the past 6 months, how often have you actively tried to consume fruits and vegetables everyday?',
+      'Nutrition: Within the past 6 months, how often have you actively tried to ensure adequate nutrition throughout the day?',
       'answers': [
         {'text': 'Rarely'
           , 'score': 1, 'yesFlag': false},
@@ -122,6 +73,7 @@ class _SurveyPageState extends State<SurveyPage> {
         {'text': 'Nearly every day', 'score': 4, 'yesFlag': false},
         {'text': 'Every day for the past 6 months+', 'score': 5, 'yesFlag': false},
         {'text': 'This used to affect me, but no longer does', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
@@ -136,11 +88,12 @@ class _SurveyPageState extends State<SurveyPage> {
         {'text': 'I have started improving the quality of my sleep and getting more sleep within the past 6 months.', 'score': 4, 'yesFlag': false},
         {'text': 'I have been getting good quality and good amounts of sleep for over 6 months.', 'score': 5, 'yesFlag': false},
         {'text': 'I was getting good quality and good amounts of sleep, but have not been prioritizing it lately.', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
       'questionText':
-      'Sleep: Within the past 6 months, how often have you actively tried to be well rested?',
+      'Sleep: Within the past 6 months, how often have you actively tried to ensure you receive a full night of sleep?',
       'answers': [
         {'text': 'Rarely'
           , 'score': 1, 'yesFlag': false},
@@ -149,25 +102,28 @@ class _SurveyPageState extends State<SurveyPage> {
         {'text': 'Nearly every day', 'score': 4, 'yesFlag': false},
         {'text': 'Every day for the past 6 months+', 'score': 5, 'yesFlag': false},
         {'text': 'This used to affect me, but no longer does', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
       'questionText':
       'Physical Activity: What are your honest feelings on the topic of physical activity right now?',
       'answers': [
-        {'text': 'I am not interested in improving my physical activity or the amount of physical activity that I do.'
+        {'text': 'I am not interested in physical activity.'
           , 'score': 1, 'yesFlag': false},
-        {'text': 'I have been thinking about ways to improve my physical activity.', 'score': 2, 'yesFlag': false},
-        {'text': 'I have been thinking about specific ways to improve and increase my physical activity.'
+        {'text': 'I have been interested in learning more about or improving my level of physical activity.', 'score': 2, 'yesFlag': false},
+        {'text': 'I have been thinking about ways to achieve adequate levels of physical activity.'
           , 'score': 3, 'yesFlag': false},
-        {'text': 'I have started improving my physical activity in the last six months.', 'score': 4, 'yesFlag': false},
-        {'text': 'I have been exercising an adequate amount and plan to continue to do so.', 'score': 5, 'yesFlag': false},
-        {'text': 'I was exercising hard to ensure good physical activity, but have not been prioritizing it lately.', 'score': 6, 'yesFlag': false},
+        {'text': 'I have started improving my level of physical activity in the last six months.', 'score': 4, 'yesFlag': false},
+        {'text': 'I have been ensuring adequate physical activity in my personal life and plan to continue to do so.', 'score': 5, 'yesFlag': false},
+        {'text': 'I was working hard to ensure adequate physical activity, but have not been prioritizing it lately.', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
       'questionText':
-      'Physical Activity: Within the past 6 months, how often have you actively tried to be active?',
+      'Physical Activity: Within the past 6 months, how often have you actively tried to be active?'
+          '(*Note: Recommendations suggest that one should engage in 150 minutes of moderate aerobic activity)',
       'answers': [
         {'text': 'Rarely'
           , 'score': 1, 'yesFlag': false},
@@ -176,25 +132,58 @@ class _SurveyPageState extends State<SurveyPage> {
         {'text': 'Nearly every day', 'score': 4, 'yesFlag': false},
         {'text': 'Every day for the past 6 months+', 'score': 5, 'yesFlag': false},
         {'text': 'This used to affect me, but no longer does', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
       'questionText':
-      'Emotional: What are your honest feelings on the topic of mental health right now?',
+      'Environmental Health: What are your honest feelings on the topic of your personal environment right now?'
+          '(*Note: this includes social and virtual aspects of your surroundings)',
       'answers': [
-        {'text': 'I am not interested in improving my mental health.'
+        {'text': 'I am not interested in learning more about my physical environment and how it can impact my overall wellness .'
           , 'score': 1, 'yesFlag': false},
-        {'text': 'I have been thinking about ways to improve my mental health.', 'score': 2, 'yesFlag': false},
-        {'text': 'I have been thinking about specific ways to improve my mental health.'
+        {'text': 'I have been interested in learning more about or improving my physical environment and how it can impact my overall wellness.', 'score': 2, 'yesFlag': false},
+        {'text': 'I have been thinking about ways to achieve a satisfactory physical environment and how it can serve to impact my overall wellness.'
           , 'score': 3, 'yesFlag': false},
-        {'text': 'I have started improving my mental health in the last six months.', 'score': 4, 'yesFlag': false},
-        {'text': 'I have been improving my mental health an adequate amount and plan to continue to do so.', 'score': 5, 'yesFlag': false},
-        {'text': 'I was improving my mental health, but have not been prioritizing it lately.', 'score': 6, 'yesFlag': false},
+        {'text': 'I have started to make improvements in physical environment and follow strategies to reduce distractions in the last six months.', 'score': 4, 'yesFlag': false},
+        {'text': 'I have been actively monitoring my personal environment to ensure that it supports my health and wellness for over half a year.', 'score': 5, 'yesFlag': false},
+        {'text': 'I was working hard to ensure a satisfactory physical environment, but have not been prioritizing it lately.', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
     {
       'questionText':
-      'Emotional: Within the past 6 months, how often have you actively tried to stay emotionally healthy?',
+      'Environmental Health: Within the past 6 months, how often did your physical environment impact your daily activities?'
+          '(i.e. finding a quiet place to study, needing to walk outside to think clearly)',
+      'answers': [
+        {'text': 'Rarely'
+          , 'score': 5, 'yesFlag': false},
+        {'text': 'Once a month', 'score': 4, 'yesFlag': false},
+        {'text': 'Multiple times a week', 'score': 3, 'yesFlag': false},
+        {'text': 'Nearly every day', 'score': 2, 'yesFlag': false},
+        {'text': 'Every day for the past 6 months+', 'score': 1, 'yesFlag': false},
+        {'text': 'This used to affect me, but no longer does', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
+      ],
+    },
+    {
+      'questionText':
+      'Stress Management: What are your honest feelings on the topic of stress management right now?',
+      'answers': [
+        {'text': 'I am not interested in managing stress levels right now.'
+          , 'score': 1, 'yesFlag': false},
+        {'text': 'I have been interested in learning more about or improving my personal levels of stress.', 'score': 2, 'yesFlag': false},
+        {'text': 'I have been thinking about ways to achieve adequate stress management.'
+          , 'score': 3, 'yesFlag': false},
+        {'text': 'I have started improving my management of stress in the last six months.', 'score': 4, 'yesFlag': false},
+        {'text': 'I have been managing my stress levels for over six months and plan to continue to do so.', 'score': 5, 'yesFlag': false},
+        {'text': 'I was working hard to ensure adequate stress management, but have not been prioritizing it lately.', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
+      ],
+    },
+    {
+      'questionText':
+      'Stress Management: Within the past 30 days, how often did you feel confident about your ability to cope with all the things you had to do and/or adequately manage your stress levels?',
       'answers': [
         {'text': 'Rarely'
           , 'score': 1, 'yesFlag': false},
@@ -203,6 +192,7 @@ class _SurveyPageState extends State<SurveyPage> {
         {'text': 'Nearly every day', 'score': 4, 'yesFlag': false},
         {'text': 'Every day for the past 6 months+', 'score': 5, 'yesFlag': false},
         {'text': 'This used to affect me, but no longer does', 'score': 6, 'yesFlag': false},
+        {'text': 'Previous Question', 'score': 0, 'yesFlag': true},
       ],
     },
   ];
@@ -224,10 +214,16 @@ class _SurveyPageState extends State<SurveyPage> {
   void _answerQuestion(int score, bool yesFlag) {
     _totalScore += score;
     scoreArray[_questionIndex] = score;
-
-    setState(() {
+    if(yesFlag){
+      setState(() {
+        _questionIndex = _questionIndex - 1;
+      });
+    }
+    else {
+      setState(() {
         _questionIndex = _questionIndex + 1;
-    });
+      });
+    }
     debugPrint(_questionIndex.toString());
     debugPrint(yesFlag.toString());
     if (_questionIndex < _questions.length) {
