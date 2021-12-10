@@ -28,6 +28,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       //backgroundColor: Color(0xFF186C58),
+      // basic size specifications
       appBar: AppBar(
         backgroundColor: const Color(0xFF186C58),
         elevation: 0,
@@ -45,15 +46,18 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
+                    // controller for email input
                     SignInTextInput(
                         controller: _emailController,
                         hintText: 'Email',
                         icon: Icons.email),
+                    // controller for password input
                     SignInTextInput(
                         controller: _passwordController,
                         hintText: 'Password',
                         icon: Icons.vpn_key,
                         obscureText: true),
+                    // Forgot password, still needs to be implemented
                     Container(
                       margin: const EdgeInsets.only(
                         top: 10,
@@ -65,6 +69,8 @@ class _LoginPageState extends State<LoginPage> {
                         "Forgot password?",
                       ),
                     ),
+                    // validates account info in email and password field.
+                    // logs user in and navigates to survey if successful
                     Expanded(
                       child: Center(
                         child: AppButton(
