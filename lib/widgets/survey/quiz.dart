@@ -9,7 +9,7 @@ class Quiz extends StatelessWidget {
   final int questionIndex;
   final Function answerQuestion;
 
-  const Quiz({
+  const Quiz({//taking in results from quiz
     Key? key,
     required this.questions,
     required this.answerQuestion,
@@ -21,7 +21,7 @@ class Quiz extends StatelessWidget {
     return Column(
       children: [
         Question(
-          questionText: questions[questionIndex]['questionText'],
+          questionText: questions[questionIndex]['questionText'],//showing the question
         ), //Question
         ...(questions[questionIndex]['answers'] as List<Map<String, Object>>)
             .map((answer) {

@@ -12,6 +12,8 @@ class SurveyPage extends StatefulWidget {
 }
 
 class _SurveyPageState extends State<SurveyPage> {
+  //questions to the survey
+  //start of survey
   final _questions = const [
     {
       'questionText':
@@ -21,6 +23,8 @@ class _SurveyPageState extends State<SurveyPage> {
       ],
     },
     {
+      //Hydration is the first category of questions. Based on the answer user chooses, it places them in a category: Precontemplation, Contemplation, Preperation, Action, Maintenance, or Relapse.
+      //Category is based on the order that the answers are in. For example Precontemplation is related to the first answer "I do not bother with staying hydrated nor am I interested..."
       'questionText':
       'Hydration: What are your honest feelings on the topic of hydration right now?',
       'answers': [
@@ -49,6 +53,8 @@ class _SurveyPageState extends State<SurveyPage> {
       ],
     },
     {
+      //Start of Nutrition Questions
+      //Categories are still based on the order in which the answers are in, first answer = Precontemplation
       'questionText':
       'Nutrition: What are your honest feelings on the topic of nutrition?',
       'answers': [
@@ -77,6 +83,7 @@ class _SurveyPageState extends State<SurveyPage> {
       ],
     },
     {
+      //Start of Sleep Questions
       'questionText':
       'Sleep: What are your honest feelings on the topic of sleep right now?',
       'answers': [
@@ -136,6 +143,7 @@ class _SurveyPageState extends State<SurveyPage> {
       ],
     },
     {
+
       'questionText':
       'Environmental Health: What are your honest feelings on the topic of your personal environment right now?'
           '(*Note: this includes social and virtual aspects of your surroundings)',
@@ -152,6 +160,7 @@ class _SurveyPageState extends State<SurveyPage> {
       ],
     },
     {
+      //Scores are swapped (first answer worth 5 points)
       'questionText':
       'Environmental Health: Within the past 6 months, how often did your physical environment impact your daily activities?'
           '(i.e. finding a quiet place to study, needing to walk outside to think clearly)',
@@ -203,7 +212,7 @@ class _SurveyPageState extends State<SurveyPage> {
   var yesFlag = false;
   var scoreArray = List.filled(30,0);
 
-  void _resetQuiz() {
+  void _resetQuiz() {//if they choose reset quiz at the end of the survey then everything gets set back to 0 so they can restart the quiz
     setState(() {
       _questionIndex = 0;
       _totalScore = 0;
@@ -212,19 +221,19 @@ class _SurveyPageState extends State<SurveyPage> {
   }
 
   void _answerQuestion(int score, bool yesFlag) {
-    _totalScore += score;
-    scoreArray[_questionIndex] = score;
-    if(yesFlag){
+    _totalScore += score;//adds score to total score
+    scoreArray[_questionIndex] = score;//adds the score to a score Array at the index of the question so each individual score can be looked at
+    if(yesFlag){//if they pressed previous- then they can go back a question- the questionIndex goes back one
       setState(() {
         _questionIndex = _questionIndex - 1;
       });
     }
     else {
-      setState(() {
+      setState(() {//otherwise go to the next question
         _questionIndex = _questionIndex + 1;
       });
     }
-    debugPrint(_questionIndex.toString());
+    debugPrint(_questionIndex.toString());//printing to console
     debugPrint(yesFlag.toString());
     if (_questionIndex < _questions.length) {
       debugPrint('We have more questions!');
@@ -243,7 +252,7 @@ class _SurveyPageState extends State<SurveyPage> {
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: _questionIndex < _questions.length
-            ? Quiz(
+            ? Quiz(//going through the quiz then going to the results
                 answerQuestion: _answerQuestion,
                 questionIndex: _questionIndex,
                 questions: _questions,

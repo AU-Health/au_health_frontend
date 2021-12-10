@@ -16,20 +16,20 @@ class Result extends StatelessWidget {
   //  Result(this.resultScore, this.resetHandler, this.waterHandler);
 
   //Remark Logic
-  List get resultPhrase {
-    var resultsArray = List.filled(10, "a");
+  List get resultPhrase {//iterating through the scoreArray to check their answers for each section
+    var resultsArray = List.filled(10, "a");// creating a resultsArray and it has to be filled with something, the As will be written over
     var result;
     // var hydrationResult;
     // var veggieResult;
     // var sleepResult;
     // var physicalResult;
     // var emotionResult;
-    for(var i = 1; i<14;i+=2){
-      var tempScore1 = scoreArray[i];
-      var tempScore2 = scoreArray[i+1];
-      var avgScore = (tempScore1 + tempScore2)/2;
+    for(var i = 1; i<14;i+=2){//iterating through scoreArray, skipping every other because each category(hydration, nutrition, etc) has 2 questions  and 2 results to be considered
+      var tempScore1 = scoreArray[i];//checking first answer of a category
+      var tempScore2 = scoreArray[i+1];//checking second answer of a category
+      var avgScore = (tempScore1 + tempScore2)/2;//finding the average score so we can put them in a result Category
       avgScore*=2;
-      switch(avgScore){
+      switch(avgScore){//matching their score to the correct result cateogry
         case 0:{
           break;
         }
@@ -93,7 +93,7 @@ class Result extends StatelessWidget {
           break;
         }
       }
-      if(i == 1){
+      if(i == 1){//adding result to resultsArray which has the result for each category(hydration, nutrition, etc)
         resultsArray[0] = result;;
       }
       else if(i == 3){
@@ -115,7 +115,7 @@ class Result extends StatelessWidget {
     print(resultsArray);
     return resultsArray;
   }
-  String get hydrationResults{
+  String get hydrationResults{//will be used to print out their results on the results page
     String words = resultPhrase[0];
     print(words);
     return words;
@@ -161,7 +161,7 @@ class Result extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         Text(
-          resultWords,
+          resultWords,//prints your results are
           style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
           softWrap: true,
@@ -176,8 +176,8 @@ class Result extends StatelessWidget {
             ), //Text
 
             textColor: Colors.green,
-            onPressed: (){
-              if(hydrationResults == "Precontemplation"){
+            onPressed: (){//gives a text that is linked to an information page based on their results
+              if(hydrationResults == "Precontemplation"){//will show precontemplation and linked to the precontemplation hydration information page
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const PrecontemplationHydration()),
@@ -216,12 +216,12 @@ class Result extends StatelessWidget {
             }
         ),
         Text(
-          hydrationResults,
+          hydrationResults,//shows their hydration results
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
 
-        FlatButton(
+        FlatButton(//same as hydration
             child: Text(
               '\nNutrition:',
               style: TextStyle(fontSize: 25),
@@ -479,11 +479,11 @@ class Result extends StatelessWidget {
         ),
         FlatButton(
           child: Text(
-            '\n\n\nRestart Quiz!',
+            '\n\n\nRestart Quiz!',//if they want to restart the quiz
             style: TextStyle(fontSize: 20),
           ), //Text
           textColor: Colors.green,
-          onPressed: resetHandler,
+          onPressed: resetHandler,//resets quiz
         ), //FlatButton
         AppButton(
           buttonText: "Restart Survey", //Text
@@ -493,7 +493,7 @@ class Result extends StatelessWidget {
           height: 20,
         ),
         AppButton(
-          buttonText: "Home",
+          buttonText: "Home",//takes them to home page
           onClick: () {
             AppNavigation.hardPush(page: HomePage(), context: context);
           },
@@ -510,9 +510,9 @@ class Result extends StatelessWidget {
     )); //Center
   }
 }
-class PrecontemplationHydration extends StatelessWidget {
+class PrecontemplationHydration extends StatelessWidget {//information page for precontemplation for hydration
   const PrecontemplationHydration({Key? key}) : super(key: key);
-  String get hydrationWords{
+  String get hydrationWords{//information text
     String words ="Your results indicate a possible ambivalence with regards to ensuring adequate hydration. Let's work together to get through this, maybe it's time to notice the feelings of thirst & "
         "being quenched. Let's also create a deeper understanding of the importance of hydration. Ready? Set? Let's do this!";
     return words;
@@ -529,18 +529,18 @@ class PrecontemplationHydration extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Text(
-                '\nHydration Results',
+                '\nHydration Results',//text hydration results at top of screen
                 style: TextStyle(fontSize: 30),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(20,75,20,70),
                 child: Text(
-                  hydrationWords,
+                  hydrationWords,//prints the information text
                   style: TextStyle(fontSize: 25),
                   textAlign: TextAlign.center,
                 ),
               ),
-              ElevatedButton(
+              ElevatedButton(//button to take them back to results page
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
                   padding: MaterialStateProperty.all(EdgeInsets.all(15)),
@@ -565,6 +565,7 @@ class PrecontemplationHydration extends StatelessWidget {
     ); //MaterialApp
   }
 }
+//all other classes do the same thing but the information text changes based on the results category and the category the result is for
 class ContemplationHydration extends StatelessWidget {
   const ContemplationHydration({Key? key}) : super(key: key);
   String get hydrationWords{

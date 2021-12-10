@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
 class Answer extends StatelessWidget {
-  //final Function selectHandler;
   final VoidCallback selectHandler;
   final String answerText;
+// selectHandler understands what was clicked and assigns it to answerText
 
   const Answer(
       {Key? key, required this.selectHandler, required this.answerText})
       : super(key: key);
 
   @override
+  //formatting the buttons with the text
+  //raised buttons
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
@@ -24,6 +26,8 @@ class Answer extends StatelessWidget {
           )),
         ),
         child: Text(answerText),
+        //when pressed call selectHandler to tell which button was selected
+
         onPressed: selectHandler,
       ), //RaisedButton
     ); //Container
