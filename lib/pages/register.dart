@@ -30,6 +30,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // basic widget size specifications
       appBar: AppBar(
         backgroundColor: const Color(0xFF186C58),
         elevation: 0,
@@ -48,20 +49,24 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
+                      // email input controller
                       SignInTextInput(
                           hintText: 'Your AU Email',
                           icon: Icons.email,
                           controller: _emailController),
+                      // password input controller
                       SignInTextInput(
                           hintText: 'Create Password',
                           icon: Icons.vpn_key,
                           controller: _passwordController,
                           obscureText: true),
+                      // input in this controller must match above password field
                       SignInTextInput(
                           hintText: 'Confirm Password',
                           icon: Icons.vpn_key,
                           controller: _confirmPasswordController,
                           obscureText: true),
+                      // registers user and navigates to survey if successful
                       Expanded(
                         child: Center(
                             child: AppButton(
