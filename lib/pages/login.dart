@@ -17,11 +17,13 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
+// text controllers for getting input data from email and password fields
 class _LoginPageState extends State<LoginPage> {
   final client = GetIt.I<Client>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  // main widget containing input fields
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,6 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
+                    // button for navigation segue to register page
                     InkWell(
                       onTap: () {
                         Navigator.push(
