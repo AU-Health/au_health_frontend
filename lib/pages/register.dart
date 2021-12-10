@@ -18,6 +18,7 @@ class RegisterPage extends StatefulWidget {
   _RegisterPageState createState() => _RegisterPageState();
 }
 
+// main controllers for sending input data to databases
 class _RegisterPageState extends State<RegisterPage> {
   final client = GetIt.I<Client>();
   final TextEditingController _emailController = TextEditingController();
@@ -25,6 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
+  // user account creation widgets
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,6 +75,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           buttonText: "Register",
                         )),
                       ),
+                      // navigation segue to login page
                       InkWell(
                         onTap: () {
                           Navigator.push(
