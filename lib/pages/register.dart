@@ -30,6 +30,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       // basic widget size specifications
       appBar: AppBar(
         backgroundColor: const Color(0xFF186C58),
